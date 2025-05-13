@@ -76,7 +76,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Univer
 local Button = Tab:CreateButton({
    Name = "DEAD RAILS",
    Callback = function()
-loadstring(game:HttpGet("https://rawscripts.net/raw/Dead-Rails-Alpha-Autofarm-bond-30318"))()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/m00ndiety/Keyless-auto-bonds/refs/heads/main/obfuscated%20(6).txt'))()
    end,
 })
 
