@@ -1,8 +1,7 @@
-
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "vBiLsR | hUb | by bilsr | .gg/VTWCBfCGw2",
+   Name = "vBiLsR | hUb | by bilsr/leyax | .gg/VTWCBfCGw2" 1.4.2,
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "bilsr hub",
    LoadingSubtitle = "LOADING",
@@ -27,11 +26,11 @@ local Window = Rayfield:CreateWindow({
    KeySettings = {
       Title = "vBiLsR",
       Subtitle = "by bilsr",
-      Note = "key here: https://discord.gg/VTWCBfCGw2", -- Use this to tell the user how to get a key
+      Note = "BIG STEPPA", -- Use this to tell the user how to get a key
       FileName = "Key123", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
       SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"bilsrwashere2"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+      Key = {"bigdawgs"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
 
@@ -48,7 +47,7 @@ Rayfield:Destroy()
 local Section = Tab:CreateSection("INFO")
 local Label = Tab:CreateLabel("made by @bilsr on discord", nil, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
 local Label = Tab:CreateLabel("if some of the scripts dont work i cant do anything, i didnt make them", nil, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
-local Label = Tab:CreateLabel("tested by @leyax_taxbills on discord", nil, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
+local Label = Tab:CreateLabel("tested by @leyax_taxbills123 on discord", nil, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
 
 local Section = Tab:CreateSection("CHANGELOG")
 local Label = Tab:CreateLabel("#1 just started this, not public yet, very early in development", nil, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
