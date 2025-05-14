@@ -73,6 +73,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Univer
 })
 
 local Button = Tab:CreateButton({
+   Name = "BROOKHAVEN",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kigredns/testUIDK/refs/heads/main/panel.lua"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
    Name = "DEAD RAILS",
    Callback = function()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/m00ndiety/Keyless-auto-bonds/refs/heads/main/obfuscated%20(6).txt'))()
