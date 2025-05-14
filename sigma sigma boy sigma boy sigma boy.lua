@@ -112,13 +112,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-ra
 })
 
 local Button = Tab:CreateButton({
-   Name = "WISL OLD",
-   Callback = function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/main/Wisl'i%20Universal%20Project.lua", true))()
-    end,
-})
-
-local Button = Tab:CreateButton({
    Name = "SystemBroken",
    Callback = function()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/H20CalibreYT/SystemBroken/main/script'))()
