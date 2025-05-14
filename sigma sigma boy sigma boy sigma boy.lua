@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "vBiLsR | hUb | by bilsr/leyax | .gg/VTWCBfCGw2" 1.4.2,
+   Name = "vBiLsR | hUb | by bilsr/leyax | .gg/VTWCBfCGw2 | 1.0.1",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "bilsr hub",
    LoadingSubtitle = "LOADING",
@@ -26,11 +26,11 @@ local Window = Rayfield:CreateWindow({
    KeySettings = {
       Title = "vBiLsR",
       Subtitle = "by bilsr",
-      Note = "BIG STEPPA", -- Use this to tell the user how to get a key
+      Note = "123", -- Use this to tell the user how to get a key
       FileName = "Key123", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
       SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"bigdawgs"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+      Key = {"bilsr123"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
 
@@ -102,6 +102,20 @@ local Button = Tab:CreateButton({
 loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/main/Wisl'i%20Universal%20Project.lua", true))()
    -- The function that takes place when the button is pressed
    end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "WISL OLD",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/skiubiditoi%20wertlsdfsdgsd", true))()   -- The function that takes place when the button is pressed
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "WISL OLD",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/main/Wisl'i%20Universal%20Project.lua", true))()
+    end,
 })
 
 local Button = Tab:CreateButton({
