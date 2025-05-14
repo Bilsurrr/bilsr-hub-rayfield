@@ -119,6 +119,20 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-ra
 })
 
 local Button = Tab:CreateButton({
+   Name = "SKIBIDI HUB",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/aemos2/Skibidihub/refs/heads/main/SkibidiHUB.txt"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "CRYPTON X",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/thesigmacorex/Crypton/main/Free"))()
+	end,
+})
+
+local Button = Tab:CreateButton({
    Name = "SystemBroken",
    Callback = function()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/H20CalibreYT/SystemBroken/main/script'))()
