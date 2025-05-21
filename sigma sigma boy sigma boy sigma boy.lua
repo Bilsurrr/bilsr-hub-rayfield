@@ -27,7 +27,7 @@ local Window = Rayfield:CreateWindow({
       Title = "vBiLsR",
       Subtitle = "by bilsr",
       Note = "123", -- Use this to tell the user how to get a key
-      FileName = "Key123", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      FileName = "Key1234436", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
       SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
       Key = {"bilsr123"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
@@ -299,4 +299,94 @@ local Button = Tab:CreateButton({
    Callback = function()
 loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
    end,
+})
+
+local FunTab = Window:CreateTab("🎉 | FUN", nil)
+local FunSection = FunTab:CreateSection("FUN STUFF")
+
+-- 1. WalkSpeed slider
+FunTab:CreateSlider({
+    Name = "WalkSpeed",
+    Range = {16, 300},
+    Increment = 1,
+    Suffix = "Speed",
+    CurrentValue = 16,
+    Flag = "WalkSpeed",
+    Callback = function(value)
+        local plr = game.Players.LocalPlayer
+        local char = plr.Character or plr.CharacterAdded:Wait()
+        local humanoid = char:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.WalkSpeed = value
+        end
+    end,
+})
+
+-- 2. JumpPower slider
+FunTab:CreateSlider({
+    Name = "JumpPower",
+    Range = {50, 300},
+    Increment = 1,
+    Suffix = "Power",
+    CurrentValue = 50,
+    Flag = "JumpPower",
+    Callback = function(value)
+        local plr = game.Players.LocalPlayer
+        local char = plr.Character or plr.CharacterAdded:Wait()
+        local humanoid = char:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.JumpPower = value
+        end
+    end,
+})
+
+-- 3. Infinite Jump toggle
+local infiniteJumpEnabled = false
+local UIS = game:GetService("UserInputService")
+
+FunTab:CreateToggle({
+    Name = "Infinite Jump",
+    CurrentValue = false,
+    Flag = "InfiniteJump",
+    Callback = function(enabled)
+        infiniteJumpEnabled = enabled
+    end,
+})
+
+UIS.JumpRequest:Connect(function()
+    if infiniteJumpEnabled then
+        local plr = game.Players.LocalPlayer
+        local char = plr.Character
+        if char and char:FindFirstChildOfClass("Humanoid") then
+            char.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+        end
+    end
+end)
+
+-- 4. Toggle Invisibility (includes hair and accessories)
+FunTab:CreateToggle({
+    Name = "Toggle Invisibility",
+    CurrentValue = false,
+    Flag = "ToggleInvisible",
+    Callback = function(enabled)
+        local plr = game.Players.LocalPlayer
+        local char = plr.Character or plr.CharacterAdded:Wait()
+        for _, part in ipairs(char:GetChildren()) do
+            if part:IsA("BasePart") or part:IsA("Decal") then
+                part.Transparency = enabled and 1 or 0
+            end
+            -- Hide accessories and hair too
+            if part:IsA("Accessory") then
+                local handle = part:FindFirstChild("Handle")
+                if handle then
+                    handle.Transparency = enabled and 1 or 0
+                end
+            end
+            if part.Name == "Hair" or part.Name == "Face" or part.Name == "Hat" then
+                if part:IsA("BasePart") then
+                    part.Transparency = enabled and 1 or 0
+                end
+            end
+        end
+    end,
 })
