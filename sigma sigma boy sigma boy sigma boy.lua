@@ -119,6 +119,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-ra
 })
 
 local Button = Tab:CreateButton({
+   Name = "GHOSTHUB (will log ur ip and stuff)",
+   Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/GhostHub'))()
+	end,
+})
+
+local Button = Tab:CreateButton({
    Name = "SKIBIDI HUB",
    Callback = function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/aemos2/Skibidihub/refs/heads/main/SkibidiHUB.txt"))()
