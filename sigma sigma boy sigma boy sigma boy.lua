@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "vBiLsR | hUb | by bilsr/leyax | .gg/VTWCBfCGw2 | 1.0.1",
+   Name = "vBiLsR | hUb | by bilsr/leyax | .gg/VTWCBfCGw2 | 1.0.2",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "bilsr hub",
    LoadingSubtitle = "LOADING",
@@ -46,11 +46,12 @@ Rayfield:Destroy()
 
 local Section = Tab:CreateSection("INFO")
 local Label = Tab:CreateLabel("made by @bilsr on discord", nil, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
-local Label = Tab:CreateLabel("if some of the scripts dont work i cant do anything, i didnt make them", nil, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
+local Label = Tab:CreateLabel("if some of the scripts dont work i cant do anything, i didnt make most of them", nil, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
 local Label = Tab:CreateLabel("tested by @leyax_taxbills123 on discord", nil, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
 
-local Section = Tab:CreateSection("CHANGELOG")
-local Label = Tab:CreateLabel("#1 just started this, not public yet, very early in development", nil, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
+local Section = Tab:CreateSection("LATEST CHANGE")
+local Label = Tab:CreateLabel("added shadowhub", nil, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
+
 
 local Section = Tab:CreateSection("COMMING SOON")
 local Label = Tab:CreateLabel("cool stuff", nil, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
