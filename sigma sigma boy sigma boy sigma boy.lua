@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "vBiLsR | hUb | by bilsr/leyax | .gg/VTWCBfCGw2 | 1.0.2",
+   Name = "fluxus | by bilsr/leyax | .gg/VTWCBfCGw2 | 1.0.2",
    Icon = 0,
    LoadingTitle = "bilsr hub",
    LoadingSubtitle = "LOADING",
@@ -34,7 +34,7 @@ local Window = Rayfield:CreateWindow({
 local Tab = Window:CreateTab("🏠 | HOME", nil)
 Tab:CreateSection("IDK STUFF")
 Tab:CreateButton({
-   Name = "CLOSE VBILSR HUB COMPLETELY",
+   Name = "CLOSE FLUXUS HUB COMPLETELY",
    Callback = function()
       Rayfield:Destroy()
    end,
@@ -272,62 +272,6 @@ Tab:CreateButton({
    Name = "STALKIE - code is pizza",
    Callback = function()
       loadstring(game:HttpGet("https://raw.githubusercontent.com/0riginalWarrior/Stalkie/refs/heads/main/roblox.lua"))()
-   end,
-})
-
-localTab:CreateButton({
-   Name = "Pandahub",
-   Callback = function()
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/NoobwarePandahub/pandahub/main/pandahub",true))()
-   end,
-})
-
-localTab:CreateButton({
-   Name = "WOOLHUB",
-   Callback = function()
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/NoobwarePandahub/woolhub/main/woolhub",true))()
-   end,
-})
-
-localTab:CreateButton({
-   Name = "SIMPLESPY",
-   Callback = function()
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/ExtendStudios/SimpleSpy/main/SimpleSpy.lua",true))()
-   end,
-})
-
-localTab:CreateButton({
-   Name = "OWOHUB",
-   Callback = function()
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/KarensS10/owo/main/main.lua",true))()
-   end,
-})
-
-LocalTab:CreateButton({
-   Name = "NekoHub",
-   Callback = function()
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/nekohub/nekohub/main/nekohub",true))()
-   end,
-})
-
-LocalTab:CreateButton({
-   Name = "PillHub",
-   Callback = function()
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/nekohub/pillhub/main/pillhub",true))()
-   end,
-})
-
-localTab:CreateButton({
-   Name = "SiriusHub",
-   Callback = function()
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/IlikeyocutgHAH/Sirius/main/Source"))()
-   end,
-})
-
-localTab:CreateButton({
-   Name = "Fluxus",
-   Callback = function()
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
    end,
 })
 
