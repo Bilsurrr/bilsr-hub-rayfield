@@ -147,21 +147,21 @@ Tab:CreateButton({
 Tab:CreateButton({
    Name = "GROW A GARDEN",
    Callback = function()
-      loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/refs/heads/main/GrowAGarden"))()
-   end,
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Garden/Garden-V1.lua", true))()
+      end,
 })
 
 Tab:CreateButton({
-   Name = "GROW A GARDEN 2",
+   Name = "GROW A GARDEN - 2",
    Callback = function()
-      loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/refs/heads/main/GrowAGarden2"))()
-   end,
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Kenniel123/Grow-a-garden/refs/heads/main/Grow%20A%20Garden"))()
+      end,
 })
 
 Tab:CreateButton({
    Name = "STEAL A BRAINROT",
    Callback = function()
-      loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/refs/heads/main/StealABrainrot"))()
+loadstring(game:HttpGet("https://pastefy.app/Zk7UIkDN/raw"))()
    end,
 })
 
