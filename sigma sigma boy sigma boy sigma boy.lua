@@ -371,7 +371,7 @@ Tab:CreateButton({
    end,
 })
 
-local FunTab = Window:CreateTab("😂 | FUN", nil)
+local Tab = Window:CreateTab("🥳 | FUN", nil)
 local FunSection = FunTab:CreateSection("MAIN")
 
 local WalkSpeed = 16
@@ -429,28 +429,8 @@ game:GetService("UserInputService").JumpRequest:Connect(function()
    end
 end)
 
-localTab:CreateToggle({
-   Name = "Toggle Invisibility",
-   CurrentValue = false,
-   Flag = "Invisibility",
-   Callback = function(value)
-       Invisibility = value
-       local plr = game.Players.LocalPlayer
-       if plr.Character then
-           for _, part in pairs(plr.Character:GetChildren()) do
-               if part:IsA("BasePart") or part:IsA("Decal") then
-                   part.Transparency = Invisibility and 1 or 0
-                   if part:IsA("Decal") then
-                       part.Transparency = Invisibility and 1 or 0
-                   end
-               end
-           end
-       end
-   end
-})
-
 -- SUSSY TAB
-local SussyTab = Window:CreateTab("🍓 | SUSSY", nil)
+local Tab = Window:CreateTab("😔 | deep shi (https://sadboys.com)", nil)
 local SussySection = SussyTab:CreateSection("MAIN")
 
 localTab:CreateButton({
