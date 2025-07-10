@@ -366,7 +366,7 @@ Tab:CreateButton({
    Name = "AIMBOT (WIP)",
    Callback = function()
       pcall(function()
-         loadstring(game:HttpGet("https://raw.githubusercontent.com/lea9310/wildfire-aim/main/wildfire-aim.lua"))()
+         loadstring(game:HttpGet(""))()
       end)
    end,
 })
