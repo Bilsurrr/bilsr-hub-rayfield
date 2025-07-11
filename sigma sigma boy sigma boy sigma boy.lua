@@ -40,10 +40,25 @@ Tab:CreateButton({
    end,
 })
 Tab:CreateSection("INFO")
-Tab:CreateLabel("made by @bilsr on discord", nil, Color3.fromRGB(255, 255, 255), false)
+Tab:CreateLabel("made by @bilsr on discord, for bugs or suggestions, feel free to add, i accept every Friend request i get", nil, Color3.fromRGB(255, 255, 255), false)
 Tab:CreateLabel("if some of the scripts dont work i cant do anything, i didnt make most of them", nil, Color3.fromRGB(255, 255, 255), false)
 Tab:CreateLabel("tested by @leyax_taxbills123 on discord", nil, Color3.fromRGB(255, 255, 255), false)
+Tab:CreateLabel("Executors you should be using: XENO, RONIX, SOLARA", nil, Color3.fromRGB(255, 255, 255), false)
+
+Tab:CreateButton({
+   Name = "CHECK YOUR EXECUTOR (UNC CHECK)",
+   Callback = function()
+loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/UNC%20Checker.txt"))()
+   end,
+})
+
 Tab:CreateLabel("HUGE NEWSSSS.... , WE MADE THE NEW FLUENT PORT", nil, Color3.fromRGB(255, 255, 255), false)
+
+--addlist FÜR BILSR, -Solara Hub - V3  loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Solara%20Hub%20v3.txt"))()
+--owl hub(mainly aimbot), loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/OwlHub.txt"))()
+--loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Murder%20Myster%202%20Hub.txt"))() MM2
+--loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Blox%20Fruits%20Hub.txt"))() Blox fruits
+--loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Fisch%20Hub%20-%20Annie%20Hub.txt"))() Fisch
 
 Tab:CreateButton({
    Name = "NEW FLUENT PORT",
