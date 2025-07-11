@@ -374,6 +374,37 @@ Tab:CreateButton({
 local Tab = Window:CreateTab("🥳 | FUN", nil)
 Tab:CreateSection("MAIN")
 
+
+local teleportName = ""
+
+Tab:CreateInput({
+    Name = "Enter Player Name to TP",
+    PlaceholderText = "Type player name here...",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(text)
+        teleportName = text
+    end,
+})
+
+Tab:CreateButton({
+    Name = "Teleport to Player",
+    Callback = function()
+        local plr = game.Players.LocalPlayer
+        local target = game.Players:FindFirstChild(teleportName)
+        if target and target.Character and target.Character:FindFirstChild("HumanoidRootPart") then
+            pcall(function()
+                plr.Character.HumanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame + Vector3.new(0, 5, 0)
+            end)
+        else
+            Rayfield:Notify({
+                Title = "Error",
+                Content = "Player not found or no character!",
+                Duration = 3,
+            })
+        end
+    end,
+})
+
 local WalkSpeed = 16
 local InfiniteJump = false
 
