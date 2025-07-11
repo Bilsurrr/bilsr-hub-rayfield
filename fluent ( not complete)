@@ -1,0 +1,617 @@
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+
+local Window = Fluent:CreateWindow({
+    Title = "fluxus | fluent port | 0.6.3 | " .. Fluent.Version,
+    SubTitle = "by vBiLsR",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true,
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.LeftControl
+})
+
+local Tabs = {
+    Main = Window:AddTab({ Title = "Main", Icon = "home" }),
+    Games = Window:AddTab({ Title = "Games", Icon = "gamepad-2" }),
+    Hubs = Window:AddTab({ Title = "Hubs", Icon = "server" }),
+    Etc = Window:AddTab({ Title = "Etc", Icon = "more-horizontal" }),
+    Fun = Window:AddTab({ Title = "Fun", Icon = "smile" }),
+    Sussy = Window:AddTab({ Title = "Sussy", Icon = "alert-triangle" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+}
+
+-- Notification example
+Fluent:Notify({
+    Title = "You loaded the script",
+    Content = "Hi",
+    SubContent = "How are you doing?",
+    Duration = 5
+})
+
+-- Main Tab
+Tabs.Main:AddParagraph({
+    Title = "DONT USE THIS BEFORE 1.0.0",
+    Content = "It's still very early in process.\nI haven't figured out how this shit works yet!"
+})
+
+Tabs.Main:AddButton({
+    Title = "Rayfield OG Version",
+    Description = "Recommended before 1.0.0",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run Script?",
+            Content = "Are you sure you want to run the Rayfield OG Version?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/sigma%20sigma%20boy%20sigma%20boy%20sigma%20boy.lua", true))()
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+-- Games Tab
+Tabs.Games:AddSection("Main")
+
+Tabs.Games:AddButton({
+    Title = "FUNKY FRIDAY AUTOPLAY",
+    Description = "Automatically play Funky Friday",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run Funky Friday Autoplay?",
+            Content = "Are you sure you want to run Funky Friday Autoplay?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/Nadir3709/ScriptHub/main/Loader"))()
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+Tabs.Games:AddButton({
+    Title = "BABFT",
+    Description = "Build A Boat For Treasure script",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run BABFT Script?",
+            Content = "Are you sure you want to run the BABFT script?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/refs/heads/main/Build%20A%20Boat%20For%20Treasure", true))()
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+Tabs.Games:AddButton({
+    Title = "BROOKHAVEN",
+    Description = "Brookhaven script loader",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run Brookhaven Script?",
+            Content = "Are you sure you want to run the Brookhaven script?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/kigredns/testUIDK/refs/heads/main/panel.lua"))()
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+Tabs.Games:AddButton({
+    Title = "DEAD RAILS",
+    Description = "Dead Rails auto bonds",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run Dead Rails Script?",
+            Content = "Are you sure you want to run the Dead Rails script?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        loadstring(game:HttpGet('https://raw.githubusercontent.com/m00ndiety/Keyless-auto-bonds/refs/heads/main/obfuscated%20(6).txt'))()
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+Tabs.Games:AddButton({
+    Title = "EVADE",
+    Description = "Evade script loader",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run Evade Script?",
+            Content = "Are you sure you want to run the Evade script?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/refs/heads/main/Evade", true))()
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+Tabs.Games:AddButton({
+    Title = "TSB",
+    Description = "TSB script loader",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run TSB Script?",
+            Content = "Are you sure you want to run the TSB script?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/refs/heads/main/TSB", true))()
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+Tabs.Games:AddButton({
+    Title = "GROW A GARDEN",
+    Description = "Grow a Garden script",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run Grow A Garden Script?",
+            Content = "Are you sure you want to run the Grow A Garden script?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Garden/Garden-V1.lua", true))()
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+Tabs.Games:AddButton({
+    Title = "GROW A GARDEN - 2",
+    Description = "Alternative Grow a Garden script",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run Grow A Garden 2 Script?",
+            Content = "Are you sure you want to run the Grow A Garden 2 script?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/Kenniel123/Grow-a-garden/refs/heads/main/Grow%20A%20Garden"))()
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+Tabs.Games:AddButton({
+    Title = "STEAL A BRAINROT",
+    Description = "Steal A Brainrot script",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run Steal A Brainrot Script?",
+            Content = "Are you sure you want to run the Steal A Brainrot script?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        loadstring(game:HttpGet("https://pastefy.app/Zk7UIkDN/raw"))()
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+-- Etc Tab
+Tabs.Etc:AddSection("Main")
+
+Tabs.Etc:AddButton({
+    Title = "PIANO AUTOPLAY",
+    Description = "Piano autoplay script",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run Piano Autoplay?",
+            Content = "Are you sure you want to run the Piano Autoplay script?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        pcall(function()
+                            loadstring(game:HttpGet("https://raw.githubusercontent.com/hellohellohell012321/TALENTLESS/main/TALENTLESS", true))()
+                        end)
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+Tabs.Etc:AddButton({
+    Title = "PIANO AUTOPLAY 2.0",
+    Description = "Piano autoplay alternative script",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run Piano Autoplay 2.0?",
+            Content = "Are you sure you want to run the Piano Autoplay 2.0 script?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        pcall(function()
+                            loadstring(game:HttpGet("https://raw.githubusercontent.com/JxcExploit/Sad/main/NoKey"))()
+                        end)
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+Tabs.Etc:AddButton({
+    Title = "TP TOOL",
+    Description = "Teleport tool that lets you click to teleport",
+    Callback = function()
+        Window:Dialog({
+            Title = "Spawn TP Tool?",
+            Content = "Are you sure you want to spawn the TP Tool?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        pcall(function()
+                            local Tele = Instance.new("Tool", game.Players.LocalPlayer.Backpack)
+                            Tele.RequiresHandle = false
+                            Tele.RobloxLocked = true
+                            Tele.Name = "TPTool"
+                            Tele.ToolTip = "Teleport Tool"
+                            Tele.Equipped:Connect(function(Mouse)
+                                Mouse.Button1Down:Connect(function()
+                                    if Mouse.Target then
+                                        game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name).HumanoidRootPart.CFrame = (CFrame.new(Mouse.Hit.x, Mouse.Hit.y + 5, Mouse.Hit.z))
+                                    end
+                                end)
+                            end)
+                        end)
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+Tabs.Etc:AddButton({
+    Title = "ANTI VC BAN",
+    Description = "Attempt to bypass Voice Chat ban",
+    Callback = function()
+        Window:Dialog({
+            Title = "Join Voice Chat?",
+            Content = "Are you sure you want to join voice chat?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        pcall(function()
+                            game:GetService("VoiceChatService"):joinVoice()
+                        end)
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+Tabs.Etc:AddButton({
+    Title = "BTOOLS",
+    Description = "Build tools script",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run BTools?",
+            Content = "Are you sure you want to run BTools?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        pcall(function()
+                            loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/BTools.txt"))()
+                        end)
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+Tabs.Etc:AddButton({
+    Title = "INFINITE YIELD",
+    Description = "Popular admin commands",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run Infinite Yield?",
+            Content = "Are you sure you want to run Infinite Yield?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        pcall(function()
+                            loadstring(game:HttpGet("https://rawscripts.net/raw/Infinite-Yield_500"))()
+                        end)
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+Tabs.Etc:AddButton({
+    Title = "TP (CTRL + CLICK TO USE)",
+    Description = "Click teleport script",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run Click Teleport?",
+            Content = "Are you sure you want to run Click Teleport?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        pcall(function()
+                            loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Click%20Teleport.txt"))()
+                        end)
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+Tabs.Etc:AddButton({
+    Title = "DEX EXPLORER",
+    Description = "Dex Explorer script",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run Dex Explorer?",
+            Content = "Are you sure you want to run Dex Explorer?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        pcall(function()
+                            loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Dex%20Explorer.txt"))()
+                        end)
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+Tabs.Etc:AddButton({
+    Title = "Airhub (AIMBOT)",
+    Description = "Airhub with aimbot script",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run Airhub?",
+            Content = "Are you sure you want to run Airhub (Aimbot)?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        pcall(function()
+                            loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/AirHub/refs/heads/main/AirHub.lua"))()
+                        end)
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end
+})
+
+-- Fun Tab UI
+Tabs.Fun:AddSection("Main")
+
+local WalkSpeed = 16
+local InfiniteJump = false
+
+Tabs.Fun:AddSlider({
+    Title = "WalkSpeed",
+    Description = "Change your walk speed",
+    Min = 16,
+    Max = 250,
+    Default = WalkSpeed,
+    Callback = function(value)
+        WalkSpeed = value
+        pcall(function()
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = WalkSpeed
+        end)
+    end,
+})
+
+Tabs.Fun:AddToggle({
+    Title = "Infinite Jump",
+    Description = "Toggle infinite jump on or off",
+    Default = false,
+    Callback = function(value)
+        InfiniteJump = value
+    end,
+})
+
+game:GetService("UserInputService").JumpRequest:Connect(function()
+    if InfiniteJump then
+        pcall(function()
+            local plr = game.Players.LocalPlayer
+            if plr.Character then
+                plr.Character:FindFirstChildOfClass('Humanoid'):ChangeState("Jumping")
+            end
+        end)
+    end
+end)
+
+-- Sussy Tab UI
+Tabs.Sussy:AddSection("Main")
+
+Tabs.Sussy:AddButton({
+    Title = "JERK OFF R15",
+    Description = "Run the Jerk Off R15 script",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run JERK OFF R15?",
+            Content = "Are you sure you want to run the Jerk Off R15 script?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw", true))()
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end,
+})
+
+-- Hubs Tab UI
+Tabs.Hubs:AddSection("Main")
+
+Tabs.Hubs:AddButton({
+    Title = "Example Hub Button",
+    Description = "Add your hub scripts here",
+    Callback = function()
+        Window:Dialog({
+            Title = "Run Hub Script?",
+            Content = "Are you sure you want to run the Hub script?",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        print("Hub script button clicked")
+                        -- Insert your hub script here
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function() end
+                }
+            }
+        })
+    end,
+})
+
+-- Settings Tab UI
+Tabs.Settings:AddSection("Main")
+
+Tabs.Settings:AddToggle({
+    Title = "Example Setting Toggle",
+    Description = "An example toggle setting",
+    Default = false,
+    Callback = function(value)
+        print("Settings toggle changed to:", value)
+        -- Insert your settings logic here
+    end,
+})
+
+return Window
