@@ -59,6 +59,11 @@ Tab:CreateLabel("HUGE NEWSSSS.... , WE MADE THE NEW FLUENT PORT", nil, Color3.fr
 --loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Murder%20Myster%202%20Hub.txt"))() MM2
 --loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Blox%20Fruits%20Hub.txt"))() Blox fruits
 --loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Fisch%20Hub%20-%20Annie%20Hub.txt"))() Fisch
+--loadstring(game:HttpGet("https://pastebin.com/raw/zJ4arsz9"))() code hub
+--loadstring(game:HttpGet("https://pastebin.com/raw/Piw5bqGq"))() XVC Hub
+--octospy loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Octo-Spy/refs/heads/main/Main.lua", true))()
+
+
 
 Tab:CreateButton({
    Name = "NEW FLUENT PORT",
@@ -104,6 +109,47 @@ Tab:CreateButton({
    Callback = function()
       loadstring(game:HttpGet('https://raw.githubusercontent.com/m00ndiety/Keyless-auto-bonds/refs/heads/main/obfuscated%20(6).txt'))()
    end,
+})
+
+Tab:CreateButton({
+   Name = "SPELLING BEE - AUTO",
+   Callback = function()
+local MarketplaceService = game:GetService("MarketplaceService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Remotes = ReplicatedStorage:WaitForChild("Remotes")
+local SubmitAnswer = Remotes:WaitForChild("SubmitAnswer")
+
+game.DescendantAdded:Connect(function(obj)
+	if obj:IsA("Sound") then
+		task.defer(function()
+			for attempt = 1, 10 do
+				local soundId = obj.SoundId
+				local assetId = soundId:match("%d+")
+
+				if assetId then
+					local success, info = pcall(function()
+						return MarketplaceService:GetProductInfo(tonumber(assetId))
+					end)
+
+					if success and info and info.Name then
+						local name = info.Name
+						name = name:match("^(.-)%s*%(%d+%)$") or name
+
+						local args1 = { "Type", name }
+						SubmitAnswer:FireServer(unpack(args1))
+
+						task.wait(0.1)
+
+						local args2 = { "Submit", name }
+						SubmitAnswer:FireServer(unpack(args2))
+					end
+					break
+				end
+			end
+		end)
+	end
+end)   
+      end,
 })
 
 Tab:CreateButton({
@@ -156,6 +202,13 @@ Tab:CreateButton({
    Name = "WISL OLD",
    Callback = function()
       loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/skiubiditoi%20wertlsdfsdgsd", true))()
+   end,
+})
+
+Tab:CreateButton({
+   Name = "Sigma-Spy",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/depthso/Sigma-Spy/refs/heads/main/Main.lua"))()
    end,
 })
 
