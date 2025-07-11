@@ -43,59 +43,20 @@ Tab:CreateSection("INFO")
 Tab:CreateLabel("made by @bilsr on discord", nil, Color3.fromRGB(255, 255, 255), false)
 Tab:CreateLabel("if some of the scripts dont work i cant do anything, i didnt make most of them", nil, Color3.fromRGB(255, 255, 255), false)
 Tab:CreateLabel("tested by @leyax_taxbills123 on discord", nil, Color3.fromRGB(255, 255, 255), false)
-
-Tab:CreateSection("LATEST CHANGE")
-Tab:CreateLabel("added shadowhub", nil, Color3.fromRGB(255, 255, 255), false)
-
-Tab:CreateSection("COMMING SOON")
-Tab:CreateLabel("cool stuff", nil, Color3.fromRGB(255, 255, 255), false)
-
--- Suggestion/bug webhook input section --
-local webhookUrl = "https://discord.com/api/webhooks/1/huafdgfjnf"
-local suggestionInput = ""
-Tab:CreateInput({
-    Name = "Suggestion or Bug Report",
-    PlaceholderText = "Type your suggestion or bug here...",
-    RemoveTextAfterFocusLost = false,
-    Callback = function(text)
-        suggestionInput = text
-    end,
-})
+Tab:CreateLabel("HUGE NEWSSSS.... , WE MADE THE NEW FLUENT PORT", nil, Color3.fromRGB(255, 255, 255), false)
 
 Tab:CreateButton({
-    Name = "Send Suggestion/Bug",
-    Callback = function()
-        if suggestionInput == "" then
-            Rayfield:Notify({
-                Title = "Error",
-                Content = "Please enter something to send!",
-                Duration = 4,
-            })
-            return
-        end
-        local data = {
-            ["content"] = "**New suggestion/bug report:**\n" .. suggestionInput,
-        }
-        local httpService = game:GetService("HttpService")
-        local success, err = pcall(function()
-            httpService:PostAsync(webhookUrl, httpService:JSONEncode(data), Enum.HttpContentType.ApplicationJson)
-        end)
-        if success then
-            Rayfield:Notify({
-                Title = "Success",
-                Content = "Suggestion/Bug sent! Thank you!",
-                Duration = 5,
-            })
-            suggestionInput = ""
-        else
-            Rayfield:Notify({
-                Title = "Error",
-                Content = "Failed to send suggestion/bug.",
-                Duration = 5,
-            })
-        end
-    end,
+   Name = "NEW FLUENT PORT",
+   Callback = function()
+loadstring(game:HttpGet("https://github.com/Bilsurrr/bilsr-hub-rayfield/blob/main/fluent%20(%20not%20complete)", true))()
+   end,
 })
+
+Tab:CreateSection("LATEST CHANGE")
+Tab:CreateLabel("Added the fluent port", nil, Color3.fromRGB(255, 255, 255), false)
+
+Tab:CreateSection("COMMING SOON")
+Tab:CreateLabel("More fluent port updates", nil, Color3.fromRGB(255, 255, 255), false)
 
 -- GAMES TAB --
 local Tab = Window:CreateTab("🎮 | GAMES", nil)
