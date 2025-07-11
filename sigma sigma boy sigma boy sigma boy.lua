@@ -51,7 +51,7 @@ Tab:CreateSection("COMMING SOON")
 Tab:CreateLabel("cool stuff", nil, Color3.fromRGB(255, 255, 255), false)
 
 -- Suggestion/bug webhook input section --
-local webhookUrl = "https://discord.com/api/webhooks/1386686677170257982/gKKKEXq1vfYfpLIq_STfEoXDJX2jrQQLTC06Lx69ea-whV_fflhVtDNE-GSJ-9aJzVxK"
+local webhookUrl = "https://discord.com/api/webhooks/1/huafdgfjnf"
 local suggestionInput = ""
 Tab:CreateInput({
     Name = "Suggestion or Bug Report",
