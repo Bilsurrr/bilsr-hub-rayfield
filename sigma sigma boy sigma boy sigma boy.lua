@@ -375,9 +375,7 @@ local Tab = Window:CreateTab("🥳 | FUN", nil)
 Tab:CreateSection("MAIN")
 
 local WalkSpeed = 16
-local JumpPower = 50
 local InfiniteJump = false
-local Invisibility = false
 
 Tab:CreateSlider({
    Name = "WalkSpeed",
@@ -390,21 +388,6 @@ Tab:CreateSlider({
        WalkSpeed = val
        pcall(function()
            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = WalkSpeed
-       end)
-   end
-})
-
-Tab:CreateSlider({
-   Name = "JumpPower",
-   Range = {50, 250},
-   Increment = 1,
-   Suffix = "jump power",
-   CurrentValue = JumpPower,
-   Flag = "JumpPower",
-   Callback = function(val)
-       JumpPower = val
-       pcall(function()
-           game.Players.LocalPlayer.Character.Humanoid.JumpPower = JumpPower
        end)
    end
 })
