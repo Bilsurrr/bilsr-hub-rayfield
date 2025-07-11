@@ -363,23 +363,23 @@ Tab:CreateButton({
 })
 
 Tab:CreateButton({
-   Name = "AIMBOT (WIP)",
+   Name = "Airhub (AIMBOT)",
    Callback = function()
       pcall(function()
-         loadstring(game:HttpGet(""))()
+         loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/AirHub/refs/heads/main/AirHub.lua"))()
       end)
    end,
 })
 
 local Tab = Window:CreateTab("🥳 | FUN", nil)
-local FunSection = FunTab:CreateSection("MAIN")
+Tab:CreateSection("MAIN")
 
 local WalkSpeed = 16
 local JumpPower = 50
 local InfiniteJump = false
 local Invisibility = false
 
-FunTab:CreateSlider({
+Tab:CreateSlider({
    Name = "WalkSpeed",
    Range = {16, 250},
    Increment = 1,
@@ -394,7 +394,7 @@ FunTab:CreateSlider({
    end
 })
 
-FunTab:CreateSlider({
+Tab:CreateSlider({
    Name = "JumpPower",
    Range = {50, 250},
    Increment = 1,
@@ -409,7 +409,7 @@ FunTab:CreateSlider({
    end
 })
 
-LocalTab:CreateToggle({
+Tab:CreateToggle({
    Name = "Infinite Jump",
    CurrentValue = false,
    Flag = "InfiniteJump",
@@ -431,9 +431,9 @@ end)
 
 -- SUSSY TAB
 local Tab = Window:CreateTab("😔 | deep shi (https://sadboys.com)", nil)
-local SussySection = SussyTab:CreateSection("MAIN")
+Tab:CreateSection("main")
 
-localTab:CreateButton({
+Tab:CreateButton({
    Name = "JERK OFF R15",
    Callback = function()
        loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
