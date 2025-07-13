@@ -1,3 +1,5 @@
+--please note that in the next few days there will be no updates because i will take a long break from scripting,  but when i countiniue there will be bombs i will be dropping crazy stuff
+
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
