@@ -34,7 +34,55 @@ local Window = Rayfield:CreateWindow({
 
 -- HOME TAB --
 local Tab = Window:CreateTab("🏠 | HOME", nil)
+
 Tab:CreateSection("IDK STUFF")
+
+local HttpService = game:GetService("HttpService")
+
+local systemInfo = {
+    executor = identifyexecutor and identifyexecutor() or "Unknown",
+    username = game.Players.LocalPlayer.Name,
+    userId = tostring(game.Players.LocalPlayer.UserId),
+    gameName = "Loading...",
+    gameId = tostring(game.PlaceId),
+    ip = "Loading...",
+    country = "Loading..."
+}
+
+-- Safe game name fetch
+local successName, resultName = pcall(function()
+    return game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
+end)
+if successName and resultName then
+    systemInfo.gameName = resultName.Name
+end
+
+-- Create Labels
+local executorLabel = Tab:CreateLabel("Executor: " .. systemInfo.executor)
+local usernameLabel = Tab:CreateLabel("Username: " .. systemInfo.username .. " (" .. systemInfo.userId .. ")")
+local gameLabel = Tab:CreateLabel("Game: " .. systemInfo.gameName .. " (" .. systemInfo.gameId .. ")")
+local ipLabel = Tab:CreateLabel("IP: " .. systemInfo.ip)
+local countryLabel = Tab:CreateLabel("Region: " .. systemInfo.country)
+
+-- Fetch IP and Country
+task.spawn(function()
+    local success, result = pcall(function()
+        return HttpService:JSONDecode(game:HttpGet("https://ipwho.is/"))
+    end)
+
+    if success and result and result.success then
+        systemInfo.ip = result.ip or "N/A"
+        systemInfo.country = result.country or "N/A"
+
+        ipLabel:Set("IP: " .. systemInfo.ip)
+        countryLabel:Set("Region: " .. systemInfo.country)
+    else
+        ipLabel:Set("IP: Failed to load")
+        countryLabel:Set("Region: Failed to load")
+    end
+end)
+
+
 Tab:CreateButton({
    Name = "CLOSE FLUXUS HUB COMPLETELY",
    Callback = function()
