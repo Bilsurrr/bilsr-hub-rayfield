@@ -3,7 +3,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "fluxus | by bilsr/leyax | .gg/VTWCBfCGw2 | 1.0.2",
+   Name = "fluxus | by bilsr/leyax | .gg/VTWCBfCGw2 | 2.0.0",
    Icon = 0,
    LoadingTitle = "bilsr hub",
    LoadingSubtitle = "LOADING",
@@ -56,17 +56,6 @@ loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/UNC%20Checker.txt"))(
 })
 
 Tab:CreateLabel("HUGE NEWSSSS.... , WE MADE THE NEW FLUENT PORT", nil, Color3.fromRGB(255, 255, 255), false)
-
---addlist FÜR BILSR, -Solara Hub - V3  loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Solara%20Hub%20v3.txt"))()
---owl hub(mainly aimbot), loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/OwlHub.txt"))()
---loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Murder%20Myster%202%20Hub.txt"))() MM2
---loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Blox%20Fruits%20Hub.txt"))() Blox fruits
---loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Fisch%20Hub%20-%20Annie%20Hub.txt"))() Fisch
---loadstring(game:HttpGet("https://pastebin.com/raw/zJ4arsz9"))() code hub
---loadstring(game:HttpGet("https://pastebin.com/raw/Piw5bqGq"))() XVC Hub
---octospy loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Octo-Spy/refs/heads/main/Main.lua", true))()
-
-
 
 Tab:CreateButton({
    Name = "NEW FLUENT PORT",
