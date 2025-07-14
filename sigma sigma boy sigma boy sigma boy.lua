@@ -202,7 +202,7 @@ Tab:CreateLabel("if some of the scripts dont work i cant do anything, i didnt ma
 Tab:CreateLabel("tested by @leyax_taxbills123 on discord", nil, Color3.fromRGB(255, 255, 255), false)
 Tab:CreateLabel("Executors you should be using: XENO, RONIX, SOLARA", nil, Color3.fromRGB(255, 255, 255), false)
 Tab:CreateLabel("working on whiteliste stuff notifications and shit", nil, Color3.fromRGB(255, 255, 255), false)
-Tab:CreateLabel("code for alpha version is "bilsrwashere2"", nil, Color3.fromRGB(255, 255, 255), false)
+Tab:CreateLabel("code for alpha version is bilsrwashere2", nil, Color3.fromRGB(255, 255, 255), false)
 Tab:CreateLabel("Arrayfield (beta rayfield V3 DROPPED)", nil, Color3.fromRGB(255, 255, 255), false)
 Tab:CreateLabel("discord earliest beta-alpha_.gBuild below", nil, Color3.fromRGB(255, 255, 255), false)
 
