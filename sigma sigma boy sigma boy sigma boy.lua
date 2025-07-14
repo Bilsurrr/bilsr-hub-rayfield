@@ -1,5 +1,5 @@
 
--- tune in for many new recodes comming soon like manmy libs and stuff and updates to the libs we already have and stuff yae
+
 local function DisableAntiCheat()
     for _, v in pairs(getgc(true)) do
         if typeof(v) == "table" then
@@ -241,7 +241,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-ra
 Tab:CreateButton({
    Name = "NEW LUNA PORT (buggy as healllllllll also inompleted )",
    Callback = function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/asdsdgasdf)", true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/asdsdgasdf", true))()
    end,
 })
 
@@ -944,17 +944,80 @@ Tab:CreateButton({
    end,
 })
 
+local Tab = Window:CreateTab("🥳 | JOKES ", nil)
+Tab:CreateSection("MAIN")
+
+Tab:CreateButton({
+   Name = "LEYAX",
+   Callback = function()
+       local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "🥙 leyax script 🥙",
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   LoadingTitle = "Loading best script ever",
+   LoadingSubtitle = "By leyax with bilsr",
+   Theme = "Amethyst", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "leyax xxxxxxxxxx"
+   },
+
+   Discord = {
+      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
+      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+
+   KeySystem = false, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Untitled",
+      Subtitle = "Key System",
+      Note = "if you drink water then good", -- Use this to tell the user how to get a key
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+
+local Tab = Window:CreateTab("Main 🍕", nil) -- Title, Image
+local Section = Tab:CreateSection("Main 🍗")
+
+local Button = Tab:CreateButton({
+   Name = "Bilsr Hub 🍖",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/sigma%20sigma%20boy%20sigma%20boy%20sigma%20boy.lua", true))()
+   end,
+})
+   end,
+})
+
+local Tab = Window:CreateTab("🤘| require scripts", nil) -- Title, Image
+local Button = Tab:CreateButton({
+   Name = "backdoor (steal a brainrot apparently???)",
+   Callback = function()
+https://raw.githubusercontent.com/Its-LALOL/LALOL-Hub/main/Backdoor-Scanner/script
+   end,
+})
+Tab:CreateLabel("33333333 guy ,require(76881352505873).ssst("USERNAME")", nil, Color3.fromRGB(255, 255, 255), false)
 
 
+--[[
+
+   loadstring(game:HttpGet('https://sirius.menu/script'))() "sirius hub" "in hubs"
+
+    {"XVC Hub", "https://pastebin.com/raw/Piw5bqGq"}, "in hubs"
+    {"Owl Hub (Aimbot)", "https://cdn.wearedevs.net/scripts/OwlHub.txt"}, "in etc"
+    {"MM2 Script", "https://cdn.wearedevs.net/scripts/Murder%20Myster%202%20Hub.txt"}, "in games"
+    {"Blox Fruits Script", "https://cdn.wearedevs.net/scripts/Blox%20Fruits%20Hub.txt"}, "in games"
+    {"Fisch Hub", "https://cdn.wearedevs.net/scripts/Fisch%20Hub%20-%20Annie%20Hub.txt"}, "iin games "
+    {"Octo Spy", "https://raw.githubusercontent.com/InfernusScripts/Octo-Spy/refs/heads/main/Main.lua"}, " in etc"
 
 
-
-
-
-   --loadstring(game:HttpGet('https://sirius.menu/script'))() "sirius hub" "in hubs"
- ---   {"XVC Hub", "https://pastebin.com/raw/Piw5bqGq"}, "in hubs"
- --   {"Owl Hub (Aimbot)", "https://cdn.wearedevs.net/scripts/OwlHub.txt"}, "in etc"
-  --  {"MM2 Script", "https://cdn.wearedevs.net/scripts/Murder%20Myster%202%20Hub.txt"}, "in games"
-  --  {"Blox Fruits Script", "https://cdn.wearedevs.net/scripts/Blox%20Fruits%20Hub.txt"}, "in games"
-   -- {"Fisch Hub", "https://cdn.wearedevs.net/scripts/Fisch%20Hub%20-%20Annie%20Hub.txt"}, "iin games "
- --   {"Octo Spy", "https://raw.githubusercontent.com/InfernusScripts/Octo-Spy/refs/heads/main/Main.lua"}, " in etc"
+    --]]
