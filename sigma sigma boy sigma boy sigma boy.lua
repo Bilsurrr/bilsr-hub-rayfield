@@ -37,19 +37,47 @@ local Tab = Window:CreateTab("🏠 | HOME", nil)
 
 Tab:CreateSection("IDK STUFF")
 
-local HttpService = game:GetService("HttpService")
+-- HOME TAB --
+local Tab = Window:CreateTab("🏠 | HOME", nil)
 
+-- System Info Section
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local executorName = identifyexecutor and identifyexecutor() or "Unknown"
+
+-- Safety Meter
+local safetyLevel = "⚠️ Unknown"
+local trustedExecutors = {
+    ["Synapse X"] = true,
+    ["ScriptWare"] = true,
+    ["Fluxus"] = true,
+    ["KRNL"] = true,
+    ["Arceus X"] = false,
+    ["Electron"] = false
+}
+
+if trustedExecutors[executorName] == true then
+    safetyLevel = "✅ Safe"
+elseif trustedExecutors[executorName] == false then
+    safetyLevel = "❌ Unsafe"
+end
+
+-- System Data
 local systemInfo = {
-    executor = identifyexecutor and identifyexecutor() or "Unknown",
-    username = game.Players.LocalPlayer.Name,
-    userId = tostring(game.Players.LocalPlayer.UserId),
+    executor = executorName,
+    username = LocalPlayer.Name,
+    userId = tostring(LocalPlayer.UserId),
+    accountAge = tostring(LocalPlayer.AccountAge) .. " days",
     gameName = "Loading...",
     gameId = tostring(game.PlaceId),
     ip = "Loading...",
-    country = "Loading..."
+    country = "Loading...",
+    safety = safetyLevel
 }
 
--- Safe game name fetch
+-- Get game name
 local successName, resultName = pcall(function()
     return game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
 end)
@@ -59,12 +87,14 @@ end
 
 -- Create Labels
 local executorLabel = Tab:CreateLabel("Executor: " .. systemInfo.executor)
+local safetyLabel = Tab:CreateLabel("Safety Level: " .. systemInfo.safety)
 local usernameLabel = Tab:CreateLabel("Username: " .. systemInfo.username .. " (" .. systemInfo.userId .. ")")
+local accountAgeLabel = Tab:CreateLabel("Account Age: " .. systemInfo.accountAge)
 local gameLabel = Tab:CreateLabel("Game: " .. systemInfo.gameName .. " (" .. systemInfo.gameId .. ")")
 local ipLabel = Tab:CreateLabel("IP: " .. systemInfo.ip)
 local countryLabel = Tab:CreateLabel("Region: " .. systemInfo.country)
 
--- Fetch IP and Country
+-- Fetch IP & Region
 task.spawn(function()
     local success, result = pcall(function()
         return HttpService:JSONDecode(game:HttpGet("https://ipwho.is/"))
@@ -81,6 +111,16 @@ task.spawn(function()
         countryLabel:Set("Region: Failed to load")
     end
 end)
+
+-- Open Website Button
+Tab:CreateButton({
+    Name = "🌐 Open Website",
+    Callback = function()
+        local url = "https://github.com/yourprofile" -- change this to your link
+        setclipboard(url)
+        print("Website URL copied to clipboard! Paste it in your browser.")
+    end,
+})
 
 
 Tab:CreateButton({
