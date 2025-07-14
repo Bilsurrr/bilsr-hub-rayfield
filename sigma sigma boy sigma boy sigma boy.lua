@@ -236,6 +236,13 @@ Tab:CreateButton({
 })
 
 Tab:CreateButton({
+   Name = "bilsr executor",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/skiubiditoi%20wertlsdfsdgsd"))()
+   end,
+})
+
+Tab:CreateButton({
    Name = "SystemBroken",
    Callback = function()
       loadstring(game:HttpGet('https://raw.githubusercontent.com/H20CalibreYT/SystemBroken/main/script'))()
