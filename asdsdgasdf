@@ -1,0 +1,335 @@
+game.StarterGui:SetCore("SendNotification", {
+    Title = "wait for everything to load.",
+    Text = "loading...",
+    Duration = 3
+})
+
+wait(3)
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local username = player.Name
+
+-- Whitelist table (CASE-SENSITIVE usernames)
+local whitelist = {
+    ["vBiLsR"] = true,
+    ["Jason_momoa000"] = true,
+    ["placeholdername"] = true,
+    ["anothername"] = true,
+    ["sampleuser"] = true
+}
+
+-- Create GUI
+local gui = Instance.new("ScreenGui")
+gui.Name = "WhitelistCheck"
+gui.ResetOnSpawn = false
+gui.Parent = game.CoreGui
+
+local frame = Instance.new("Frame", gui)
+frame.Size = UDim2.new(0, 300, 0, 100)
+frame.Position = UDim2.new(0.5, -150, 0.4, 0)
+frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+frame.BorderSizePixel = 0
+
+local label = Instance.new("TextLabel", frame)
+label.Size = UDim2.new(1, 0, 1, 0)
+label.BackgroundTransparency = 1
+label.TextColor3 = Color3.fromRGB(255, 255, 255)
+label.TextSize = 20
+label.Text = "Detecting if you're whitelisted..."
+label.Font = Enum.Font.SourceSansSemibold
+
+-- Wait a moment before checking
+task.wait(3)
+
+-- Check whitelist
+if whitelist[username] then
+    label.Text = "✅ Whitelisted. Loading script..."
+    task.wait(2)
+    gui:Destroy()
+    local Luna = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-Softworks/Luna-Interface-Suite/refs/heads/master/source.lua", true))()
+
+local Window = Luna:CreateWindow({
+    Name = "fluxus | by bilsr/leyax | .gg/VTWCBfCGw2 | 2.0.0",
+    LoadingTitle = "bilsr hub",
+    LoadingSubtitle = "LOADING",
+    ConfigSettings = {
+        Enabled = true,
+        FolderName = nil,
+        FileName = "bilsr hub thingy",
+    },
+    Discord = {
+        Enabled = true,
+        Invite = "VTWCBfCGw2",
+        RememberJoins = true,
+    },
+    KeySystem = true,
+    KeySettings = {
+        Title = "vBiLsR",
+        Subtitle = "by bilsr",
+        Note = "123",
+        FileName = "Key1234436",
+        SaveKey = false,
+        GrabKeyFromSite = false,
+        Key = {"bilsr123"},
+    },
+})
+
+-- HOME TAB --
+local HomeTab = Window:CreateTab({
+    Name = "🏠 | HOME",
+})
+
+local HomeSection1 = HomeTab:CreateSection("IDK STUFF")
+
+HomeTab:CreateButton({
+    Name = "CLOSE FLUXUS HUB COMPLETELY",
+    Callback = function()
+        Luna:Destroy()
+    end,
+})
+
+local HomeSection2 = HomeTab:CreateSection("INFO")
+
+local infoLines = {
+    "made by @bilsr on discord, for bugs or suggestions, feel free to add, i accept every Friend request i get",
+    "if some of the scripts dont work i cant do anything, i didnt make most of them",
+    "tested by @leyax_taxbills123 on discord",
+    "Executors you should be using: XENO, RONIX, SOLARA",
+    "please note that in the next few days there will be no updates because i will take a long break from scripting",
+}
+
+for _, line in ipairs(infoLines) do
+    HomeTab:CreateLabel({
+        Text = line,
+        Color = Color3.fromRGB(255, 255, 255),
+    })
+end
+
+HomeTab:CreateButton({
+    Name = "CHECK YOUR EXECUTOR (UNC CHECK)",
+    Callback = function()
+        loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/UNC%20Checker.txt"))()
+    end,
+})
+
+HomeTab:CreateLabel({
+    Text = "HUGE NEWSSSS.... , WE MADE THE NEW FLUENT PORT",
+    Color = Color3.fromRGB(255, 255, 255),
+})
+
+HomeTab:CreateButton({
+    Name = "NEW FLUENT PORT",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/fluent%20(%20not%20complete)", true))()
+    end,
+})
+
+HomeTab:CreateButton({
+    Name = "RAYFIELD",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/sigma%20sigma%20boy%20sigma%20boy%20sigma%20boy.lua",true))()
+    end,
+})
+
+local HomeSection3 = HomeTab:CreateSection("LATEST CHANGE")
+HomeTab:CreateLabel({
+    Text = "Added the fluent port",
+    Color = Color3.fromRGB(255, 255, 255),
+})
+
+local HomeSection4 = HomeTab:CreateSection("COMMING SOON")
+HomeTab:CreateLabel({
+    Text = "More fluent port updates",
+    Color = Color3.fromRGB(255, 255, 255),
+})
+
+-- GAMES TAB --
+local GamesTab = Window:CreateTab({
+    Name = "🎮 | GAMES",
+})
+
+local GamesSection = GamesTab:CreateSection("MAIN")
+
+local gamesButtons = {
+    {Name = "FUNKY FRIDAY AUTOPLAY", Url = "https://raw.githubusercontent.com/Nadir3709/ScriptHub/main/Loader"},
+    {Name = "BABFT", Url = "https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/refs/heads/main/Build%20A%20Boat%20For%20Treasure"},
+    {Name = "BROOKHAVEN", Url = "https://raw.githubusercontent.com/kigredns/testUIDK/refs/heads/main/panel.lua"},
+    {Name = "DEAD RAILS", Url = "https://raw.githubusercontent.com/m00ndiety/Keyless-auto-bonds/refs/heads/main/obfuscated%20(6).txt"},
+    {Name = "EVADE", Url = "https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/refs/heads/main/Evade"},
+    {Name = "TSB", Url = "https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/refs/heads/main/TSB"},
+    {Name = "GROW A GARDEN", Url = "https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Garden/Garden-V1.lua"},
+    {Name = "GROW A GARDEN - 2", Url = "https://raw.githubusercontent.com/Kenniel123/Grow-a-garden/refs/heads/main/Grow%20A%20Garden"},
+    {Name = "STEAL A BRAINROT", Url = "https://pastefy.app/Zk7UIkDN/raw"},
+}
+
+for _, button in ipairs(gamesButtons) do
+    GamesTab:CreateButton({
+        Name = button.Name,
+        Callback = function()
+            loadstring(game:HttpGet(button.Url, true))()
+        end,
+    })
+end
+
+GamesTab:CreateButton({
+    Name = "SPELLING BEE - AUTO",
+    Callback = function()
+        local MarketplaceService = game:GetService("MarketplaceService")
+        local ReplicatedStorage = game:GetService("ReplicatedStorage")
+        local Remotes = ReplicatedStorage:WaitForChild("Remotes")
+        local SubmitAnswer = Remotes:WaitForChild("SubmitAnswer")
+
+        game.DescendantAdded:Connect(function(obj)
+            if obj:IsA("Sound") then
+                task.defer(function()
+                    for attempt = 1, 10 do
+                        local soundId = obj.SoundId
+                        local assetId = soundId:match("%d+")
+                        if assetId then
+                            local success, info = pcall(function()
+                                return MarketplaceService:GetProductInfo(tonumber(assetId))
+                            end)
+
+                            if success and info and info.Name then
+                                local name = info.Name
+                                name = name:match("^(.-)%s*%(%d+%)$") or name
+
+                                SubmitAnswer:FireServer("Type", name)
+                                task.wait(0.1)
+                                SubmitAnswer:FireServer("Submit", name)
+                            end
+                            break
+                        end
+                    end
+                end)
+            end
+        end)
+    end,
+})
+
+-- HUBS TAB --
+local HubsTab = Window:CreateTab({
+    Name = "📜 | HUBS",
+})
+
+local hubsButtons = {
+    {Name = "WISL", Url = "https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/main/Wisl'i%20Universal%20Project.lua"},
+    {Name = "WISL OLD", Url = "https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/skiubiditoi%20wertlsdfsdgsd"},
+    {Name = "Sigma-Spy", Url = "https://raw.githubusercontent.com/depthso/Sigma-Spy/refs/heads/main/Main.lua"},
+    {Name = "GHOSTHUB (will log ur ip and stuff)", Url = "https://raw.githubusercontent.com/GhostPlayer352/Test4/main/GhostHub"},
+    {Name = "SKIBIDI HUB", Url = "https://raw.githubusercontent.com/aemos2/Skibidihub/refs/heads/main/SkibidiHUB.txt"},
+    {Name = "CRYPTON X", Url = "https://raw.githubusercontent.com/thesigmacorex/Crypton/main/Free"},
+    {Name = "bilsr executor", Url = "https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/skiubiditoi%20wertlsdfsdgsd"},
+    {Name = "SystemBroken", Url = "https://raw.githubusercontent.com/H20CalibreYT/SystemBroken/main/script"},
+    {Name = "ORCA TING", Url = "https://raw.githubusercontent.com/richie0866/orca/master/public/snapshot.lua"},
+    {Name = "COOLGUI", Url = "https://cdn.discordapp.com/attachments/"},
+    {Name = "MoonUI", Url = "https://raw.githubusercontent.com/IlikeyocutgHAH/MoonUI-v13-102-SCRIPTS/main/MoonUI%20v13!"},
+    {Name = "Shadow Hub", Url = "https://pastebin.com/raw/tuDMk1pr"},
+    {Name = "BYPASSER", Url = "https://raw.githubusercontent.com/AnnaRoblox/AnnaBypasser/refs/heads/main/AnnaBypasser.lua"},
+    {Name = "KaterHub", Url = "https://raw.githubusercontent.com/KATERGaming/Roblox/main/KaterHub.Lua"},
+    {Name = "DA HUB (KEY)", Url = "https://raw.githubusercontent.com/dazaims/DA_Hub/main/DA_Hub"},
+    {Name = "HOLF HUB", Url = "https://raw.githubusercontent.com/Podroka626/Scripts/main/Universal"},
+    {Name = "STALKIE - code is pizza", Url = "https://raw.githubusercontent.com/0riginalWarrior/Stalkie/refs/heads/main/roblox.lua"},
+}
+
+for _, button in ipairs(hubsButtons) do
+    HubsTab:CreateButton({
+        Name = button.Name,
+        Callback = function()
+            loadstring(game:HttpGet(button.Url, true))()
+        end,
+    })
+end
+
+-- ETC TAB --
+local EtcTab = Window:CreateTab({
+    Name = "➕ | ETC",
+})
+
+local etcButtons = {
+    {Name = "PIANO AUTOPLAY", Url = "https://raw.githubusercontent.com/hellohellohell012321/1/main/bilsr_piano"},
+}
+
+for _, button in ipairs(etcButtons) do
+    EtcTab:CreateButton({
+        Name = button.Name,
+        Callback = function()
+            loadstring(game:HttpGet(button.Url, true))()
+        end,
+    })
+end
+
+-- SETTINGS TAB --
+local SettingsTab = Window:CreateTab({
+    Name = "⚙ | SETTINGS",
+})
+
+SettingsTab:CreateToggle({
+    Name = "Save Config",
+    CurrentValue = true,
+    Callback = function(value)
+        Window:SetConfigSave(value)
+    end,
+})
+
+SettingsTab:CreateSlider({
+    Name = "Transparency",
+    Min = 0,
+    Max = 1,
+    Default = 0.5,
+    Callback = function(value)
+        Window:SetTransparency(value)
+    end,
+})
+
+SettingsTab:CreateInput({
+    Name = "Set Config File Name",
+    Placeholder = "File Name",
+    Callback = function(text)
+        Window:SetConfigFileName(text)
+    end,
+})
+
+SettingsTab:CreateKeybind({
+    Name = "Toggle Keybind",
+    Default = Enum.KeyCode.LeftShift,
+    Callback = function(key)
+        Window:SetToggleKeybind(key)
+    end,
+})
+
+SettingsTab:CreateButton({
+    Name = "Destroy UI",
+    Callback = function()
+        Luna:Destroy()
+    end,
+})
+
+SettingsTab:CreateButton({
+    Name = "Save Config",
+    Callback = function()
+        Window:SaveConfig()
+    end,
+})
+
+SettingsTab:CreateButton({
+    Name = "Load Config",
+    Callback = function()
+        Window:LoadConfig()
+    end,
+})
+
+SettingsTab:CreateButton({
+    Name = "Reset Config",
+    Callback = function()
+        Window:ResetConfig()
+    end,
+})
+
+else
+    label.Text = "❌ You are not whitelisted. Kicking..."
+    task.wait(3)
+    gui:Destroy()
+    player:Kick("not whitelisted. dm bilsr on discord for testing purposes")
+end
