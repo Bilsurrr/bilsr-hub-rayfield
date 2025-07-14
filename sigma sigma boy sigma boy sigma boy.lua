@@ -1,4 +1,27 @@
---please note that in the next few days there will be no updates because i will take a long break from scripting,  but when i countiniue there will be bombs i will be dropping crazy stuff
+
+-- tune in for many new recodes comming soon like manmy libs and stuff and updates to the libs we already have and stuff yae
+local function DisableAntiCheat()
+    for _, v in pairs(getgc(true)) do
+        if typeof(v) == "table" then
+            if rawget(v, "Detect") then
+                rawset(v, "Detect", function() return false end)
+            end
+            if rawget(v, "Check") then
+                rawset(v, "Check", function() return false end)
+            end
+        end
+    end
+end
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- Replace with the username you want to kick
+local blockedUser = "BlacklistPlaceholder"
+
+if LocalPlayer.Name == blockedUser then
+    LocalPlayer:Kick("Access denied.")
+end
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
@@ -32,10 +55,38 @@ local Window = Rayfield:CreateWindow({
    }
 })
 
--- HOME TAB --
-local Tab = Window:CreateTab("🏠 | HOME", nil)
+local Tab = Window:CreateTab("⚠️ | Mini Executor", nil)
+-- Theme selector
 
-Tab:CreateSection("IDK STUFF")
+-- Mini script executor
+Tab:CreateInput({
+    Name = "Mini Executor",
+    PlaceholderText = "Enter Lua code here...",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(text)
+        _G.ExecutorInput = text -- Store input
+    end,
+})
+
+
+Tab:CreateButton({
+    Name = "Execute Code",
+    Callback = function()
+        if _G.ExecutorInput and _G.ExecutorInput ~= "" then
+            local success, err = pcall(function()
+                loadstring(_G.ExecutorInput)()
+            end)
+            if not success then
+                Rayfield:Notify({
+                    Title = "Execution Error",
+                    Content = tostring(err),
+                    Duration = 4,
+                    Image = nil,
+                })
+            end
+        end
+    end,
+})
 
 -- HOME TAB --
 local Tab = Window:CreateTab("🏠 | HOME", nil)
@@ -54,6 +105,10 @@ local trustedExecutors = {
     ["ScriptWare"] = true,
     ["Fluxus"] = true,
     ["KRNL"] = true,
+    ["Solara"] = true,
+    ["Ronix"] = true,
+    ["Xeno"] = true,
+    ["Swift"] = true,
     ["Arceus X"] = false,
     ["Electron"] = false
 }
@@ -85,9 +140,11 @@ if successName and resultName then
     systemInfo.gameName = resultName.Name
 end
 
+Tab:CreateSection("YOUR INFO")
+
 -- Create Labels
 local executorLabel = Tab:CreateLabel("Executor: " .. systemInfo.executor)
-local safetyLabel = Tab:CreateLabel("Safety Level: " .. systemInfo.safety)
+local safetyLabel = Tab:CreateLabel("Executor Status: " .. systemInfo.safety)
 local usernameLabel = Tab:CreateLabel("Username: " .. systemInfo.username .. " (" .. systemInfo.userId .. ")")
 local accountAgeLabel = Tab:CreateLabel("Account Age: " .. systemInfo.accountAge)
 local gameLabel = Tab:CreateLabel("Game: " .. systemInfo.gameName .. " (" .. systemInfo.gameId .. ")")
@@ -112,16 +169,25 @@ task.spawn(function()
     end
 end)
 
+Tab:CreateSection("copy")
+
+
 -- Open Website Button
 Tab:CreateButton({
-    Name = "🌐 Open Website",
+    Name = "Copy Loadstring",
     Callback = function()
-        local url = "https://github.com/yourprofile" -- change this to your link
+        local url = "Test.V2" -- change this to your link
         setclipboard(url)
         print("Website URL copied to clipboard! Paste it in your browser.")
+		            Rayfield:Notify({
+                Title = "Copied!",
+                Content = "Copied the text.",
+                Duration = 3,
+            })
     end,
 })
 
+Tab:CreateSection("MAIN")
 
 Tab:CreateButton({
    Name = "CLOSE FLUXUS HUB COMPLETELY",
@@ -129,12 +195,32 @@ Tab:CreateButton({
       Rayfield:Destroy()
    end,
 })
+
 Tab:CreateSection("INFO")
 Tab:CreateLabel("made by @bilsr on discord, for bugs or suggestions, feel free to add, i accept every Friend request i get", nil, Color3.fromRGB(255, 255, 255), false)
 Tab:CreateLabel("if some of the scripts dont work i cant do anything, i didnt make most of them", nil, Color3.fromRGB(255, 255, 255), false)
 Tab:CreateLabel("tested by @leyax_taxbills123 on discord", nil, Color3.fromRGB(255, 255, 255), false)
 Tab:CreateLabel("Executors you should be using: XENO, RONIX, SOLARA", nil, Color3.fromRGB(255, 255, 255), false)
-Tab:CreateLabel("please note that in the next few days there will be no updates because i will take a long break from scripting", nil, Color3.fromRGB(255, 255, 255), false)
+Tab:CreateLabel("working on whiteliste stuff notifications and shit", nil, Color3.fromRGB(255, 255, 255), false)
+Tab:CreateLabel("code for alpha version is "bilsrwashere2"", nil, Color3.fromRGB(255, 255, 255), false)
+Tab:CreateLabel("Arrayfield (beta rayfield V3 DROPPED)", nil, Color3.fromRGB(255, 255, 255), false)
+Tab:CreateLabel("discord earliest beta-alpha_.gBuild below", nil, Color3.fromRGB(255, 255, 255), false)
+
+Tab:CreateButton({
+   Name = "discord prototype",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/raas"))()
+   end,
+})
+
+Tab:CreateButton({
+   Name = "arrayfield",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/arrayfield"))()
+   end,
+})
+
+
 
 Tab:CreateButton({
    Name = "CHECK YOUR EXECUTOR (UNC CHECK)",
@@ -450,6 +536,287 @@ Tab:CreateButton({
 })
 
 Tab:CreateButton({
+   Name = "VBILSR HUB (alpha fluxus hub)",
+   Callback = function()
+
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "vBiLsR | hUb | by bilsr | .gg/VTWCBfCGw2",
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   LoadingTitle = "bilsr hub",
+   LoadingSubtitle = "LOADING",
+   Theme = "Amethyst", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "bilsr hub thingy"
+   },
+
+   Discord = {
+      Enabled = true, -- Prompt the user to join your Discord server if their executor supports it
+      Invite = "VTWCBfCGw2", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+
+   KeySystem = true, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "vBiLsR",
+      Subtitle = "by bilsr",
+      Note = "key here: https://discord.gg/VTWCBfCGw2", -- Use this to tell the user how to get a key
+      FileName = "Key123", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"bilsrwashere2"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+
+local Tab = Window:CreateTab("🏠 | HOME", nil) -- Title, Image
+local Section = Tab:CreateSection("IDK STUFF")
+local Button = Tab:CreateButton({
+   Name = "CLOSE VBILSR HUB COMPLETELY",
+   Callback = function()
+Rayfield:Destroy()
+   end,
+})
+
+
+local Section = Tab:CreateSection("INFO")
+local Label = Tab:CreateLabel("made by @bilsr on discord", nil, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
+local Label = Tab:CreateLabel("if some of the scripts dont work i cant do anything, i didnt make them", nil, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
+local Label = Tab:CreateLabel("tested by @leyax_taxbills on discord", nil, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
+
+local Section = Tab:CreateSection("CHANGELOG")
+local Label = Tab:CreateLabel("#1 just started this, not public yet, very early in development", nil, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
+
+local Section = Tab:CreateSection("COMMING SOON")
+local Label = Tab:CreateLabel("cool stuff", nil, Color3.fromRGB(255, 255, 255), false) -- Title, Icon, Color, IgnoreTheme
+
+
+local Tab = Window:CreateTab("🎮 | GAMES", nil) -- Title, Image
+local Section = Tab:CreateSection("MAIN")
+local Button = Tab:CreateButton({
+   Name = "FUNKY FRIDAY AUTOPLAY",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Nadir3709/ScriptHub/main/Loader"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "BABFT",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/refs/heads/main/Build%20A%20Boat%20For%20Treasure", true))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "DEAD RAILS",
+   Callback = function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Dead-Rails-Alpha-Autofarm-bond-30318"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "EVADE",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/refs/heads/main/Evade", true ))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "TSB",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/refs/heads/main/TSB", true ))()
+   end,
+})
+
+
+local Tab = Window:CreateTab("📜 | HUBS", nil) -- Title, Image
+local Section = Tab:CreateSection("MAIN")
+local Button = Tab:CreateButton({
+   Name = "WISL",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/main/Wisl'i%20Universal%20Project.lua", true))()
+   -- The function that takes place when the button is pressed
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "SystemBroken",
+   Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/H20CalibreYT/SystemBroken/main/script'))()
+   -- The function that takes place when the button is pressed
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "ORCA TING",
+   Callback = function()
+loadstring(
+  game:HttpGetAsync("https://raw.githubusercontent.com/richie0866/orca/master/public/snapshot.lua"))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "COOLGUI",
+   Callback = function()
+loadstring(game:GetObjects("rbxassetid://9827584846")[1].Source)()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "MoonUI",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/IlikeyocutgHAH/MoonUI-v13-102-SCRIPTS/main/MoonUI%20v13!"))()
+    end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Shadow Hub",
+   Callback = function()
+loadstring(game:HttpGet(('https://pastebin.com/raw/tuDMk1pr'),true))()
+    end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "BYPASSER",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AnnaRoblox/AnnaBypasser/refs/heads/main/AnnaBypasser.lua",true))()     end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "KaterHub",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/KATERGaming/Roblox/main/KaterHub.Lua"))()
+    end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "DA HUB (KEY) ",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/dazaims/DA_Hub/main/DA_Hub", true))()
+    end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "HOLF HUB ",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Podroka626/Scripts/main/Universal"))()
+    end,
+})
+
+local Tab = Window:CreateTab("➕ | ETC", nil) -- Title, Image
+local Section = Tab:CreateSection("MAIN")
+local Button = Tab:CreateButton({
+   Name = "PIANO AUTOPLAY",
+   Callback = function()
+   pcall(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/hellohellohell012321/TALENTLESS/main/TALENTLESS", true))()
+end) 
+    end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "PIANO AUTOPLAY 2.0",
+   Callback = function()
+   pcall(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/JxcExploit/Sad/main/NoKey"))()end)
+    end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "TP TOOL",
+   Callback = function()
+   pcall(function()
+local Tele = Instance.new("Tool", game.Players.LocalPlayer.Backpack)
+Tele.RequiresHandle = false
+Tele.RobloxLocked = true
+Tele.Name = "TPTool"
+Tele.ToolTip = "Teleport Tool"
+Tele.Equipped:connect(function(Mouse)
+	Mouse.Button1Down:connect(function()
+		if Mouse.Target then
+			game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name).HumanoidRootPart.CFrame = (CFrame.new(Mouse.Hit.x, Mouse.Hit.y + 5, Mouse.Hit.z))
+		end
+	end)
+end)
+end) 
+    end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "ANTI VC BAN",
+   Callback = function()
+   pcall(function()
+game:GetService("VoiceChatService"):joinVoice()
+end) 
+    end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "BTOOLS",
+   Callback = function()
+   pcall(function()
+loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/BTools.txt"))()end) 
+    end,
+})
+
+
+local Button = Tab:CreateButton({
+   Name = "INFINITE YIELD",
+   Callback = function()
+   pcall(function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Infinite-Yield_500"))()
+end) 
+    end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "TP (CTRL + CLICK TO USE)",
+   Callback = function()
+   pcall(function()
+loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Click%20Teleport.txt"))()end) 
+    end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "DEX EXPLORER",
+   Callback = function()
+   pcall(function()
+loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Dex%20Explorer.txt"))()end) 
+    end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "AIMBOT (WILL CRASH ROBLOX DONT USE, WORKING ON IT)",
+   Callback = function()
+   pcall(function()
+loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/WRD%20Aimbot.txt"))()end)
+   end,
+})
+
+Rayfield:Notify({
+   Title = "was bilsr here??",
+   Content = "i guess he was ",
+   Duration = 6.5,
+   Image = nil,
+})
+local Tab = Window:CreateTab("😏 | SUSSY STUFF", nil) -- Title, Image
+local Section = Tab:CreateSection("MAIN")
+local Button = Tab:CreateButton({
+   Name = "JERK OFF R15",
+   Callback = function()
+loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
+   end,
+})
+	end,
+})
+
+Tab:CreateButton({
    Name = "BTOOLS",
    Callback = function()
       pcall(function()
@@ -576,3 +943,19 @@ Tab:CreateButton({
        loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
    end,
 })
+
+
+
+
+
+
+
+
+   loadstring(game:HttpGet('https://sirius.menu/script'))() "sirius hub" "in hubs"
+
+ ---   {"XVC Hub", "https://pastebin.com/raw/Piw5bqGq"}, "in hubs"
+ --   {"Owl Hub (Aimbot)", "https://cdn.wearedevs.net/scripts/OwlHub.txt"}, "in etc"
+  --  {"MM2 Script", "https://cdn.wearedevs.net/scripts/Murder%20Myster%202%20Hub.txt"}, "in games"
+  --  {"Blox Fruits Script", "https://cdn.wearedevs.net/scripts/Blox%20Fruits%20Hub.txt"}, "in games"
+   -- {"Fisch Hub", "https://cdn.wearedevs.net/scripts/Fisch%20Hub%20-%20Annie%20Hub.txt"}, "iin games "
+ --   {"Octo Spy", "https://raw.githubusercontent.com/InfernusScripts/Octo-Spy/refs/heads/main/Main.lua"}, " in etc"
