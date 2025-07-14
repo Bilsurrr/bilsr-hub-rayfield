@@ -46,6 +46,7 @@ Tab:CreateLabel("made by @bilsr on discord, for bugs or suggestions, feel free t
 Tab:CreateLabel("if some of the scripts dont work i cant do anything, i didnt make most of them", nil, Color3.fromRGB(255, 255, 255), false)
 Tab:CreateLabel("tested by @leyax_taxbills123 on discord", nil, Color3.fromRGB(255, 255, 255), false)
 Tab:CreateLabel("Executors you should be using: XENO, RONIX, SOLARA", nil, Color3.fromRGB(255, 255, 255), false)
+Tab:CreateLabel("please note that in the next few days there will be no updates because i will take a long break from scripting", nil, Color3.fromRGB(255, 255, 255), false)
 
 Tab:CreateButton({
    Name = "CHECK YOUR EXECUTOR (UNC CHECK)",
