@@ -951,8 +951,7 @@ Tab:CreateButton({
 
 
 
-   loadstring(game:HttpGet('https://sirius.menu/script'))() "sirius hub" "in hubs"
-
+   --loadstring(game:HttpGet('https://sirius.menu/script'))() "sirius hub" "in hubs"
  ---   {"XVC Hub", "https://pastebin.com/raw/Piw5bqGq"}, "in hubs"
  --   {"Owl Hub (Aimbot)", "https://cdn.wearedevs.net/scripts/OwlHub.txt"}, "in etc"
   --  {"MM2 Script", "https://cdn.wearedevs.net/scripts/Murder%20Myster%202%20Hub.txt"}, "in games"
