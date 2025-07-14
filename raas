@@ -1,0 +1,131 @@
+local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/discord%20lib.txt")()
+
+local win = DiscordLib:Window("fluxus | by bilsr/leyax")
+
+local main = win:Server("Main Hub", "http://www.roblox.com/asset/?id=6031075938")
+
+-- ===== HOME TAB =====
+local home = main:Channel("🏠 Home")
+
+-- System Info
+home:Label("Executor: "..(identifyexecutor and identifyexecutor() or "Unknown"))
+home:Label("User: "..game.Players.LocalPlayer.Name)
+home:Label("Game ID: "..game.PlaceId)
+
+home:Seperator()
+
+home:Button("🔄 Rejoin Server", function()
+    game:GetService("TeleportService"):Teleport(game.PlaceId)
+end)
+
+home:Button("❌ Close Hub", function()
+    -- Discord lib doesn't have destroy function, so we hide everything
+    for _,v in pairs(game:GetService("CoreGui"):GetChildren()) do
+        if v.Name == "Discord" then
+            v.Enabled = false
+        end
+    end
+end)
+
+-- ===== EXECUTOR TAB =====
+local executor = main:Channel("💻 Executor")
+
+local execInput
+executor:Textbox("Lua Code", "Enter code here", false, function(t)
+    execInput = t
+end)
+
+executor:Button("Execute", function()
+    if execInput and execInput ~= "" then
+        local success, err = pcall(function()
+            loadstring(execInput)()
+        end)
+        if not success then
+            DiscordLib:Notification("Error", tostring(err), "OK")
+        end
+    end
+end)
+
+-- ===== GAMES TAB =====
+local games = main:Channel("🎮 Games")
+
+games:Button("Funky Friday Autoplay", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Nadir3709/ScriptHub/main/Loader"))()
+    DiscordLib:Notification("Loaded", "Funky Friday script executed", "OK")
+end)
+
+games:Button("BABFT Script", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/main/Build%20A%20Boat%20For%20Treasure", true))()
+    DiscordLib:Notification("Loaded", "BABFT script executed", "OK")
+end)
+
+-- ===== PLAYER TAB =====
+local player = main:Channel("👤 Player")
+
+local speedValue = 16
+local speedEnabled = false
+
+player:Toggle("Speed Hack", false, function(state)
+    speedEnabled = state
+    if speedEnabled then
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speedValue
+    else
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+    end
+end)
+
+player:Slider("Speed Amount", 16, 200, 50, function(value)
+    speedValue = value
+    if speedEnabled then
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value
+    end
+end)
+
+-- ===== TELEPORT TAB =====
+local teleport = main:Channel("🔮 Teleport")
+
+teleport:Button("Teleport to Spawn", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 100, 0)
+    DiscordLib:Notification("Teleported", "Went to spawn", "OK")
+end)
+
+-- ===== HUBS TAB =====
+local hubs = main:Channel("📜 Hubs")
+
+hubs:Button("WISL Hub", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/main/Wisl'i%20Universal%20Project.lua", true))()
+    DiscordLib:Notification("Loaded", "WISL Hub executed", "OK")
+end)
+
+-- ===== MISC TAB =====
+local misc = main:Channel("➕ Misc")
+
+misc:Button("Infinite Yield", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+    DiscordLib:Notification("Loaded", "IY FE loaded", "OK")
+end)
+
+-- ===== SUSSY TAB =====
+local sussy = main:Channel("😏 Sussy")
+
+sussy:Button("R15 Animation", function()
+    loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
+    DiscordLib:Notification("Loaded", "Animation executed", "OK")
+end)
+
+-- Key system simulation (Discord lib doesn't have built-in key system)
+local keyVerified = false
+if not keyVerified then
+    local keyInput
+    home:Textbox("Enter Key", "bilsr123", true, function(t)
+        if t == "bilsr123" then
+            keyVerified = true
+            DiscordLib:Notification("Success", "Key verified!", "OK")
+        else
+            DiscordLib:Notification("Error", "Invalid key", "OK")
+        end
+    end)
+end
+
+-- Notification when loaded
+DiscordLib:Notification("Hub Loaded", "Welcome to the converted hub!\nKey: bilsr123", "OK")
