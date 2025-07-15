@@ -55,40 +55,192 @@ local Window = Rayfield:CreateWindow({
    }
 })
 
-local Tab = Window:CreateTab("⚠️ | Mini Executor", nil)
--- Theme selector
+local Tab = Window:CreateTab("📜 | PLACEHOLDER", nil)
 
--- Mini script executor
+local debugLabel, debugButton
+
+-- Create the toggle
+Tab:CreateToggle({
+    Name = "Enable Debug/Beta/Alpha Testing Shit",
+    CurrentValue = false,
+    Callback = function(enabled)
+        if enabled then
+            -- Create debug UI elements if they don't exist yet
+            if not debugLabel then
+                debugLabel = Tab:CreateLabel("⚠️ DEBUG MODE ENABLED - Features in development")
+            else
+                debugLabel:SetVisible(true)
+            end
+
+            if not debugButton then
+                debugButton = Tab:CreateButton({
+                    Name = "Test Feature (WIP)",
+                    Callback = function()
+                        print("Debug feature triggered!")
+                        Rayfield:Notify({
+                            Title = "Debug",
+                            Content = "This feature is a work in progress.",
+                            Duration = 3
+                        })
+                    end
+                })
+            else
+                debugButton:SetVisible(true)
+            end
+
+        else
+            -- Hide debug UI elements when toggle is off
+            if debugLabel then debugLabel:SetVisible(false) end
+            if debugButton then debugButton:SetVisible(false) end
+        end
+    end
+})
+
 Tab:CreateInput({
-    Name = "Mini Executor",
+    Name = "Execute Code",
     PlaceholderText = "Enter Lua code here...",
     RemoveTextAfterFocusLost = false,
-    Callback = function(text)
-        _G.ExecutorInput = text -- Store input
-    end,
+    Flag = "MiniTerminal",
+    Callback = function(code)
+        local success, result = pcall(loadstring(code))
+        print("[MiniTerm]", success and result or "Error: "..tostring(result))
+    end
 })
+
+Tab:CreateInput({
+    Name = "Load Script by URL",
+    PlaceholderText = "Paste Pastebin or GitHub URL...",
+    RemoveTextAfterFocusLost = true,
+    Flag = "DynamicScriptLoader",
+    Callback = function(url)
+        pcall(function()
+            loadstring(game:HttpGet(url))()
+        end)
+    end
+})
+
+local MusicTab = Window:CreateTab("🎵 | Music Player", nil)
+
+local playingSound = nil
+
+MusicTab:CreateInput({
+    Name = "Enter Music ID or URL",
+    PlaceholderText = "e.g. 1837635128 or rbxassetid://1837635128",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(input)
+        local soundId = input
+        if tonumber(input) then
+            soundId = "rbxassetid://" .. input
+        end
+
+        -- Stop and destroy existing sound
+        if playingSound then
+            playingSound:Stop()
+            playingSound:Destroy()
+        end
+
+        local sound = Instance.new("Sound")
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound.Looped = true
+        sound.Parent = workspace
+        sound:Play()
+        playingSound = sound
+
+        Rayfield:Notify({
+            Title = "Music Playing",
+            Content = "Now playing ID: " .. input,
+            Duration = 4
+        })
+    end
+})
+
+local PictureTab = Window:CreateTab("🖼️ | Picture Viewer", nil)
+
+PictureTab:CreateInput({
+    Name = "Insert Image ID",
+    PlaceholderText = "e.g., 123456789",
+    RemoveTextAfterFocusLost = true,
+    Callback = function(imgId)
+        local imageGui = Instance.new("ScreenGui")
+        imageGui.Name = "PictureViewer"
+        imageGui.ResetOnSpawn = false
+        imageGui.Parent = game:GetService("CoreGui")
+
+        local frame = Instance.new("Frame")
+        frame.Size = UDim2.new(0, 250, 0, 250)
+        frame.Position = UDim2.new(0.5, -125, 0.5, -125)
+        frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+        frame.BorderSizePixel = 0
+        frame.Active = true
+        frame.Draggable = true
+        frame.Parent = imageGui
+
+        local imageLabel = Instance.new("ImageLabel")
+        imageLabel.Size = UDim2.new(1, 0, 1, 0)
+        imageLabel.Position = UDim2.new(0, 0, 0, 0)
+        imageLabel.Image = "rbxassetid://" .. imgId
+        imageLabel.BackgroundTransparency = 1
+        imageLabel.ScaleType = Enum.ScaleType.Fit
+        imageLabel.Parent = frame
+
+        Rayfield:Notify({
+            Title = "Image Loaded!",
+            Content = "Draggable image window created.",
+            Duration = 3
+        })
+    end
+})
+
+
+
+
+MusicTab:CreateButton({
+    Name = "🛑 Stop Music",
+    Callback = function()
+        if playingSound then
+            playingSound:Stop()
+            playingSound:Destroy()
+            playingSound = nil
+            Rayfield:Notify({
+                Title = "Music Stopped",
+                Content = "The music has been stopped.",
+                Duration = 3
+            })
+        else
+            Rayfield:Notify({
+                Title = "No Music Playing",
+                Content = "You need to play something first.",
+                Duration = 3
+            })
+        end
+    end
+})
+
 
 
 Tab:CreateButton({
-    Name = "Execute Code",
+    Name = "Rejoin Server",
     Callback = function()
-        if _G.ExecutorInput and _G.ExecutorInput ~= "" then
-            local success, err = pcall(function()
-                loadstring(_G.ExecutorInput)()
-            end)
-            if not success then
-                Rayfield:Notify({
-                    Title = "Execution Error",
-                    Content = tostring(err),
-                    Duration = 4,
-                    Image = nil,
-                })
-            end
-        end
-    end,
+        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+    end
 })
 
--- HOME TAB --
+Tab:CreateButton({
+    Name = "Server Hop",
+    Callback = function()
+        local HttpService = game:GetService("HttpService")
+        local Servers = game.HttpGet and HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Desc&limit=100"))
+        for _, v in pairs(Servers.data) do
+            if v.playing < v.maxPlayers then
+                game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, v.id)
+                break
+            end
+        end
+    end
+})
+
+
 local Tab = Window:CreateTab("🏠 | HOME", nil)
 
 -- System Info Section
@@ -129,6 +281,7 @@ local systemInfo = {
     gameId = tostring(game.PlaceId),
     ip = "Loading...",
     country = "Loading...",
+    city = "Loading...", -- Added city field
     safety = safetyLevel
 }
 
@@ -150,8 +303,9 @@ local accountAgeLabel = Tab:CreateLabel("Account Age: " .. systemInfo.accountAge
 local gameLabel = Tab:CreateLabel("Game: " .. systemInfo.gameName .. " (" .. systemInfo.gameId .. ")")
 local ipLabel = Tab:CreateLabel("IP: " .. systemInfo.ip)
 local countryLabel = Tab:CreateLabel("Region: " .. systemInfo.country)
+local cityLabel = Tab:CreateLabel("City: " .. systemInfo.city) -- city label
 
--- Fetch IP & Region
+-- Fetch IP, Region, City
 task.spawn(function()
     local success, result = pcall(function()
         return HttpService:JSONDecode(game:HttpGet("https://ipwho.is/"))
@@ -160,30 +314,32 @@ task.spawn(function()
     if success and result and result.success then
         systemInfo.ip = result.ip or "N/A"
         systemInfo.country = result.country or "N/A"
+        systemInfo.city = result.city or "N/A"  -- fetch city
 
         ipLabel:Set("IP: " .. systemInfo.ip)
         countryLabel:Set("Region: " .. systemInfo.country)
+        cityLabel:Set("City: " .. systemInfo.city) -- update city label
     else
         ipLabel:Set("IP: Failed to load")
         countryLabel:Set("Region: Failed to load")
+        cityLabel:Set("City: Failed to load")
     end
 end)
 
-Tab:CreateSection("copy")
-
+Tab:CreateSection("Copy")
 
 -- Open Website Button
 Tab:CreateButton({
-    Name = "Copy Loadstring",
+    Name = "Copy TEST",
     Callback = function()
         local url = "Test.V2" -- change this to your link
         setclipboard(url)
         print("Website URL copied to clipboard! Paste it in your browser.")
-		            Rayfield:Notify({
-                Title = "Copied!",
-                Content = "Copied the text.",
-                Duration = 3,
-            })
+        Rayfield:Notify({
+            Title = "Copied!",
+            Content = "Copied the text.",
+            Duration = 3,
+        })
     end,
 })
 
@@ -205,27 +361,26 @@ Tab:CreateLabel("working on whiteliste stuff notifications and shit", nil, Color
 Tab:CreateLabel("code for alpha version is bilsrwashere2", nil, Color3.fromRGB(255, 255, 255), false)
 Tab:CreateLabel("Arrayfield (beta rayfield V3 DROPPED)", nil, Color3.fromRGB(255, 255, 255), false)
 Tab:CreateLabel("discord earliest beta-alpha_.gBuild below", nil, Color3.fromRGB(255, 255, 255), false)
+Tab:CreateLabel("bloom or amethyst?", nil, Color3.fromRGB(255, 255, 255), false)
 
 Tab:CreateButton({
    Name = "discord prototype",
    Callback = function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/raas"))()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/raas"))()
    end,
 })
 
 Tab:CreateButton({
    Name = "arrayfield",
    Callback = function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/arrayfield"))()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/arrayfield"))()
    end,
 })
-
-
 
 Tab:CreateButton({
    Name = "CHECK YOUR EXECUTOR (UNC CHECK)",
    Callback = function()
-loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/UNC%20Checker.txt"))()
+       loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/UNC%20Checker.txt"))()
    end,
 })
 
@@ -234,14 +389,14 @@ Tab:CreateLabel("HUGE NEWSSSS.... , WE MADE THE NEW FLUENT PORT", nil, Color3.fr
 Tab:CreateButton({
    Name = "NEW FLUENT PORT (buggy and incompleted as hell)",
    Callback = function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/fluent%20(%20not%20complete)", true))()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/fluent%20(%20not%20complete)", true))()
    end,
 })
 
 Tab:CreateButton({
    Name = "NEW LUNA PORT (buggy as healllllllll also inompleted )",
    Callback = function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/asdsdgasdf", true))()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/asdsdgasdf", true))()
    end,
 })
 
@@ -249,7 +404,8 @@ Tab:CreateSection("LATEST CHANGE")
 Tab:CreateLabel("Added the fluent port", nil, Color3.fromRGB(255, 255, 255), false)
 
 Tab:CreateSection("COMMING SOON")
-Tab:CreateLabel("More fluent port updates", nil, Color3.fromRGB(255, 255, 255), false)
+Tab:CreateLabel("More fluent port updates, also require executor and gearer and more", nil, Color3.fromRGB(255, 255, 255), false)
+
 
 -- GAMES TAB --
 local Tab = Window:CreateTab("🎮 | GAMES", nil)
@@ -269,6 +425,49 @@ Tab:CreateButton({
       loadstring(game:HttpGet("https://raw.githubusercontent.com/wisl884/wisl-i-Universal-Project1/refs/heads/main/Build%20A%20Boat%20For%20Treasure", true))()
    end,
 })
+
+Tab:CreateButton({
+   Name = "Blox Fruits Script",
+   Callback = function()
+      loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Blox%20Fruits%20Hub.txt"))()
+   end,
+})
+
+Tab:CreateButton({
+   Name = "MM2 Script",
+   Callback = function()
+      loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Murder%20Myster%202%20Hub.txt"))()
+   end,
+})
+
+Tab:CreateButton({
+   Name = "Fisch Hub",
+   Callback = function()
+      loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Fisch%20Hub%20-%20Annie%20Hub.txt"))()
+   end,
+})
+
+Tab:CreateButton({
+   Name = "Da Hood - Sylex",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/bbbbbbbbbbbbbb121/Roblox/refs/heads/main/Sylex", true))()
+   end,
+})
+
+Tab:CreateButton({
+   Name = "Ink Game (Luarmor)",
+   Callback = function()
+      loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/284c7c5eb4a430a82162018c617e9aa0.lua"))()
+   end,
+})
+
+Tab:CreateButton({
+   Name = "Ink Game (Alt)",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/DarkClpher/RBX-Scripts/refs/heads/main/Ink%20Game/Main.luau'))()
+   end,
+})
+
 
 Tab:CreateButton({
    Name = "BROOKHAVEN",
@@ -393,6 +592,35 @@ Tab:CreateButton({
 })
 
 Tab:CreateButton({
+   Name = "Sirius Hub",
+   Callback = function()
+      loadstring(game:HttpGet('https://sirius.menu/script'))()
+   end,
+})
+
+Tab:CreateButton({
+   Name = "XVC Hub",
+   Callback = function()
+      loadstring(game:HttpGet("https://pastebin.com/raw/Piw5bqGq"))()
+   end,
+})
+
+Tab:CreateButton({
+   Name = "Owl Hub (Aimbot)",
+   Callback = function()
+      loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/OwlHub.txt"))()
+   end,
+})
+
+Tab:CreateButton({
+   Name = "N3xxGUI",
+   Callback = function()
+      loadstring(game:HttpGet("https://github.com/Vint4ge-swag/N3xxThis/raw/refs/heads/main/AnyGameScript", true))()
+   end,
+})
+
+
+Tab:CreateButton({
    Name = "SKIBIDI HUB",
    Callback = function()
       loadstring(game:HttpGet("https://raw.githubusercontent.com/aemos2/Skibidihub/refs/heads/main/SkibidiHUB.txt"))()
@@ -474,6 +702,13 @@ Tab:CreateButton({
    Name = "HOLF HUB",
    Callback = function()
       loadstring(game:HttpGet("https://raw.githubusercontent.com/Podroka626/Scripts/main/Universal"))()
+   end,
+})
+
+Tab:CreateButton({
+   Name = "better c00lgui (wip)",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-rayfield/refs/heads/main/coogui!!.lua", true))()
    end,
 })
 
@@ -775,6 +1010,23 @@ end)
     end,
 })
 
+Tab:CreateToggle({
+    Name = "Anti-AFK",
+    CurrentValue = false,
+    Flag = "AntiAFK",
+    Callback = function(value)
+        if value then
+            local vu = game:GetService("VirtualUser")
+            game:GetService("Players").LocalPlayer.Idled:Connect(function()
+                vu:Button2Down(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
+                task.wait(1)
+                vu:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
+            end)
+        end
+    end
+})
+
+
 local Button = Tab:CreateButton({
    Name = "TP (CTRL + CLICK TO USE)",
    Callback = function()
@@ -824,6 +1076,14 @@ Tab:CreateButton({
       end) 
    end,
 })
+
+Tab:CreateButton({
+   Name = "Octo Spy",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Octo-Spy/refs/heads/main/Main.lua"))()
+   end,
+})
+
 
 Tab:CreateButton({
    Name = "INFINITE YIELD",
@@ -922,6 +1182,13 @@ Tab:CreateToggle({
    end
 })
 
+Tab:CreateButton({
+   Name = "JERK OFF R15",
+   Callback = function()
+       loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
+   end,
+})
+
 game:GetService("UserInputService").JumpRequest:Connect(function()
    if InfiniteJump then
        pcall(function()
@@ -933,18 +1200,9 @@ game:GetService("UserInputService").JumpRequest:Connect(function()
    end
 end)
 
--- SUSSY TAB
-local Tab = Window:CreateTab("😔 | deep shi (https://sadboys.com)", nil)
-Tab:CreateSection("main")
+-- SUSS
 
-Tab:CreateButton({
-   Name = "JERK OFF R15",
-   Callback = function()
-       loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
-   end,
-})
-
-local Tab = Window:CreateTab("🥳 | JOKES ", nil)
+local Tab = Window:CreateTab("❓ | ???? ", nil)
 Tab:CreateSection("MAIN")
 
 Tab:CreateButton({
@@ -998,26 +1256,82 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Bilsurrr/bilsr-hub-ra
    end,
 })
 
-local Tab = Window:CreateTab("🤘| require scripts", nil) -- Title, Image
+local Tab = Window:CreateTab("🤘| require & backdoors", nil) -- Title, Image
 local Button = Tab:CreateButton({
-   Name = "backdoor (steal a brainrot apparently???)",
+   Name = "lalol backdoor",
    Callback = function()
-https://raw.githubusercontent.com/Its-LALOL/LALOL-Hub/main/Backdoor-Scanner/script
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Its-LALOL/LALOL-Hub/main/Backdoor-Scanner/script"))()
    end,
 })
-Tab:CreateLabel("33333333 guy ,require(76881352505873).ssst("USERNAME")", nil, Color3.fromRGB(255, 255, 255), false)
+
+Tab:CreateButton({
+   Name = "Yet Another Backdoor",
+   Callback = function()
+      loadstring(game:HttpGet("https://pastefy.app/iPp0a0Nx/raw"))()
+   end,
+})
 
 
---[[
+Tab:CreateButton({
+   Name = "Project Backdoored",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/gojohdkaisenkt/gojohdkaisenkt-update/refs/heads/main/Project%20backdoored'))()
+   end,
+})
 
-   loadstring(game:HttpGet('https://sirius.menu/script'))() "sirius hub" "in hubs"
+Tab:CreateButton({
+   Name = "SOME BACKDOOR IDK",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/gojohdkaisenkt/Gojokaisenkt-hub/refs/heads/main/1x4%20by%20gojohdkaisenkt%20new'))()
+   end,
+})
 
-    {"XVC Hub", "https://pastebin.com/raw/Piw5bqGq"}, "in hubs"
-    {"Owl Hub (Aimbot)", "https://cdn.wearedevs.net/scripts/OwlHub.txt"}, "in etc"
-    {"MM2 Script", "https://cdn.wearedevs.net/scripts/Murder%20Myster%202%20Hub.txt"}, "in games"
-    {"Blox Fruits Script", "https://cdn.wearedevs.net/scripts/Blox%20Fruits%20Hub.txt"}, "in games"
-    {"Fisch Hub", "https://cdn.wearedevs.net/scripts/Fisch%20Hub%20-%20Annie%20Hub.txt"}, "iin games "
-    {"Octo Spy", "https://raw.githubusercontent.com/InfernusScripts/Octo-Spy/refs/heads/main/Main.lua"}, " in etc"
+Tab:CreateButton({
+   Name = "Backdoor Legacy",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/IvanTheProtogen/BackdoorLegacy/main/main.lua'))()
+   end,
+})
 
 
-    --]]
+local settingsTab = Window:CreateTab("⚙️ | Settings", nil)
+
+-- Manual Save Config button (optional, since Rayfield auto-saves too)
+settingsTab:CreateButton({
+    Name = "Save Config",
+    Callback = function()
+        Rayfield:SaveConfiguration()
+        Rayfield:Notify({
+            Title = "Config",
+            Content = "Configuration saved successfully!",
+            Duration = 3
+        })
+    end
+})
+
+-- Manual Load Config button (optional)
+settingsTab:CreateButton({
+    Name = "Load Config",
+    Callback = function()
+        Rayfield:LoadConfiguration()
+        -- After loading config, update theme color manually from saved color
+        local savedColor = Rayfield:GetFlag("ThemeColorPickerFlag")
+        if savedColor then
+            Window:ChangeThemeColor(savedColor)
+        end
+
+        Rayfield:Notify({
+            Title = "Config",
+            Content = "Configuration loaded successfully!",
+            Duration = 3
+        })
+    end
+})
+
+-- Optional: On script start, apply saved theme color automatically
+local savedColor = Rayfield:GetFlag("ThemeColorPickerFlag")
+if savedColor then
+    Window:ChangeThemeColor(savedColor)
+end
+
+local Tab = Window:CreateTab("📦 | Require Executor (wip)", nil)
